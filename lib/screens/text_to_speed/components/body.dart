@@ -16,7 +16,7 @@ class Body extends StatelessWidget {
           decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(8),
-              border: Border.all(color: lightBlackColor)),
+              border: Border.all(color: op20BlackColor)),
           child: TextField(
             maxLines: null,
             keyboardType: TextInputType.multiline,

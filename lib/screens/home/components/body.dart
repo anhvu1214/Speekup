@@ -4,6 +4,7 @@ import 'package:speekup_v2/screens/emergency/emergency_screen.dart';
 import 'package:speekup_v2/screens/home/components/carousel_slider.dart';
 import 'package:speekup_v2/screens/common/search_bar.dart';
 import 'package:speekup_v2/screens/home/home_screen.dart';
+import 'package:speekup_v2/screens/login.dart/login_screen.dart';
 import 'package:speekup_v2/screens/my_list/my_list.dart';
 import 'package:speekup_v2/screens/text_to_speed/text_to_speed_screen.dart';
 
@@ -43,9 +44,7 @@ class Body extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(children: <Widget>[
       //Search bar
-      Padding(
-        padding: EdgeInsets.all(24),
-        child: SearchBar()),
+      Padding(padding: EdgeInsets.all(24), child: SearchBar()),
 
       //Welcome text
       Align(
@@ -79,7 +78,10 @@ class Body extends StatelessWidget {
       Padding(
           padding: EdgeInsets.symmetric(horizontal: 24),
           child: OutlinedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => LoginScreen()));
+              },
               child: Text("Đăng xuất"),
               style: OutlinedButton.styleFrom(
                 primary: primaryColor,
@@ -92,20 +94,21 @@ class Body extends StatelessWidget {
               )))
     ]);
   }
+
   //Render redirect button
   InkWell buildButtons(BuildContext context, Icon icon, String text,
       StatelessWidget nextScreen) {
     return InkWell(
         onTap: () {
-          Navigator.push(context,
-          MaterialPageRoute(builder: (context) => nextScreen));
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => nextScreen));
         },
         child: Container(
             width: 312,
             height: 48,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
-                border: Border.all(color: lightBlackColor)),
+                border: Border.all(color: op20BlackColor)),
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 16),
               child: Row(
