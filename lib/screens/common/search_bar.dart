@@ -53,7 +53,7 @@ class _SearchBarState extends State<SearchBar> {
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(8),
                   border: Border.all(
-                    color: _isTapped ? primaryColor : lightBlackColor,
+                    color: _isTapped ? primaryColor : op20BlackColor,
                   )),
               child: TextField(
                 // onTap: _handleTap,
@@ -64,7 +64,7 @@ class _SearchBarState extends State<SearchBar> {
                     hintStyle: TextStyle(fontSize: 14),
                     suffixIcon: Icon(
                       Icons.search,
-                      color: _isTapped ? primaryColor : lightBlackColor,
+                      color: _isTapped ? primaryColor : op20BlackColor,
                     ),
                     border: InputBorder.none),
               ),

@@ -25,7 +25,7 @@ class Body extends StatelessWidget {
           color: Colors.white,
           borderRadius: BorderRadius.circular(8),
           border: Border.all(
-            color: lightBlackColor,
+            color: op20BlackColor,
           )
         ),
         padding: EdgeInsets.all(16),
@@ -41,7 +41,7 @@ class Body extends StatelessWidget {
               ),
             Spacer(),
             Icon(Icons.arrow_forward_ios_outlined,
-            color: lighterBlackColor,
+            color: op40BlackColor,
             size: 15)
           ],
         ),

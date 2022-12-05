@@ -38,7 +38,7 @@ class Body extends StatelessWidget {
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(8),
                     border: Border.all(
-                      color: lightBlackColor,
+                      color: op20BlackColor,
                     )),
                 padding: EdgeInsets.all(16),
                 child: Row(
