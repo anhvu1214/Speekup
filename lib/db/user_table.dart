@@ -9,58 +9,27 @@ class UserTable {
   static String tableName = "users";
   final dbHelper = DB.instance;
 
-  // UserTable({
-  //   required this.database,
-  // }) : super();
-
-  // ignore: empty_constructor_bodies
-  // Future<bool> initTable() async {
-  //   final db = await dbHelper.database;
-  //   const String idType = 'INTEGER PRIMARY KEY AUTOINCREMENT';
-
-  //   const String textType = 'TEXT NOT NULL';
-  //   try { 
-  //     await database.execute('''
-  //       CREATE TABLE IF NOT EXISTS $tableName (
-  //         ${UserFields.id} $idType,
-  //         ${UserFields.username} $textType,
-  //         ${UserFields.fullname} $textType,
-  //         ${UserFields.password} $textType
-  //       )
-  //       ''');
-  //     print("object");
-  //     await database.insert(
-  //         tableName,
-  //         UserModel(username: 'admin', fullname: "Admin", password: 'admin')
-  //             .toJson());
-
-  //     return true;
-  //   } catch (e) {
-  //     return false;
-  //   }
-  // }
-
   Future<UserModel> create(UserModel user) async {
     final db = await dbHelper.database;
     final id = await db?.insert(tableName, user.toJson());
     return user.copy(id: id);
   }
 
-  Future<UserModel> readUser(int id) async {
+  Future<UserModel> getUser(String username) async {
     final db = await dbHelper.database;
     final maps = await db?.query(tableName,
         columns: UserFields.values,
-        where: '${UserFields.id} = ?',
-        whereArgs: [id]);
+        where: '${UserFields.username} = ?',
+        whereArgs: [username]);
 
     if (maps!.isNotEmpty) {
       return UserModel.fromJson(maps.first);
     } else {
-      throw Exception('ID $id not found');
+      throw Exception('Username $username not found');
     }
   }
 
-  Future<UserModel?> getLoginUser(String username, String password) async {
+  Future<UserModel?> authenticateUser(String username, String password) async {
     final db = await dbHelper.database;
     // final res = database.query(tableUsers,
     //     columns: UserFields.values,
@@ -75,6 +44,17 @@ class UserTable {
     } else {
       return null;
     }
+  }
+
+    Future<bool> isValidUsername (String username) async {
+    final db = await dbHelper.database;
+    var res = await db?.rawQuery("SELECT * FROM $tableName WHERE "
+        "${UserFields.username} = '$username'");
+
+    if (res!.isEmpty) {
+      return false;
+    }
+    return true;
   }
 
   Future<int> update(UserModel user) async {
