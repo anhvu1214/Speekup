@@ -10,5 +10,7 @@ const lightGrayColor = Color(0xFFF9F9F9);
 
 //Font weight
 const w400Font = FontWeight.w400;
+const w500Font = FontWeight.w500;
+const w600Font = FontWeight.w600;
 const w700Font = FontWeight.w700;
 

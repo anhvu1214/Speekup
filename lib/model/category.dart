@@ -1,36 +1,41 @@
 import 'dart:collection';
 
 class CategoryFields {
-  static final List<String> values = [id, name];
+  static final List<String> values = [id, name, username, isDeletable];
 
   static final String id = 'id';
   static final String name = 'name';
-  static final String userId = 'categoryId';
+  static final String isDeletable = 'isDeletable';
+  static final String username = 'username';
 }
 
 class CategoryModel {
   final int? id;
   String name;
-  int? userID;
+  int isDeletable;
+  String username;
 
   CategoryModel({
     this.id,
     required this.name,
-    this.userID = 0,
+    required this.username,
+    this.isDeletable = 1
   });
 
-  CategoryModel copy({int? id, String? name, int? userID}) => CategoryModel(
+  CategoryModel copy({int? id, String? name, String? username, int? isDeletable}) => CategoryModel(
     id: id ?? this.id,
     name: name ?? this.name,
-    userID: userID ?? this.userID
+    username: username ?? this.username,
+    isDeletable: isDeletable ?? this.isDeletable
   );
 
   static CategoryModel fromJson(Map<String, Object?> json) => CategoryModel(
     id: json[CategoryFields.id] as int?,
     name: json[CategoryFields.name] as String,
-    userID: json[CategoryFields.userId] as int?
+    username: json[CategoryFields.username] as String,
+    isDeletable: json[CategoryFields.isDeletable] as int
   );
 
   Map<String, Object?> toJson() =>
-      {CategoryFields.id: id, CategoryFields.name: name, CategoryFields.userId: userID};
+      {CategoryFields.id: id, CategoryFields.name: name, CategoryFields.username: username, CategoryFields.isDeletable: isDeletable};
 }

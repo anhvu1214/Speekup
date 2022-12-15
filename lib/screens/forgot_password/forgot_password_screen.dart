@@ -1,8 +1,11 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:speekup_v2/screens/forgot_password/otp_form.dart';
 
 import '../../contants.dart';
 import '../common/text_form_field.dart';
-import 'components/body.dart';
+import '../login.dart/components/body.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
   @override
@@ -10,7 +13,14 @@ class ForgotPasswordScreen extends StatefulWidget {
 }
 
 class _ForgotPasswordScreen extends State<ForgotPasswordScreen> {
+
   final ctlUserEmail = TextEditingController();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +72,10 @@ class _ForgotPasswordScreen extends State<ForgotPasswordScreen> {
               ),
               //Login button
               OutlinedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => OtpForm()));
+                },
                 child: Text(
                   "Gửi mã xác nhận",
                   style: TextStyle(fontWeight: FontWeight.w600, fontSize: 14),

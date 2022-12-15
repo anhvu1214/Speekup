@@ -1,12 +1,11 @@
 import 'dart:collection';
 
 class SentenceFields {
-  static final List<String> values = [id, word, isDownloaded, voiceFile, frequency, description];
+  static final List<String> values = [id, word, isDeletable, frequency, description];
 
   static final String id = 'id';
   static final String word = 'word';
-  static final String isDownloaded = 'isDownloaded';
-  static final String voiceFile = 'voiceFile';
+  static final String isDeletable = 'isDeletable';
   static final String frequency = 'frequency';
   static final String description = 'description';
 }
@@ -14,33 +13,29 @@ class SentenceFields {
 class SentenceModel {
   final int? id;
   String word;
-  bool isDownloaded;
-  String voiceFile;
+  int isDeletable;
   int frequency;
-  String description;
+  String? description;
 
   SentenceModel({
     this.id,
     required this.word,
-    required this.isDownloaded,
-    required this.voiceFile,
-    required this.frequency,
-    required this.description,
+    this.isDeletable = 1,
+    this.frequency = 0,
+    this.description
   });
 
   SentenceModel copy({
     int? id, 
     String? word,
-    bool? isDownloaded,
-    String? voiceFile,
+    int? isDeletable,
     int? frequency,
     String? description
     }) =>
       SentenceModel(
         id: id ?? this.id, 
         word: word ?? this.word,
-        isDownloaded: isDownloaded ?? this.isDownloaded,
-        voiceFile: voiceFile ?? this.voiceFile,
+        isDeletable: isDeletable ?? this.isDeletable,
         frequency: frequency ?? this.frequency,
         description: description ?? this.description
         );
@@ -48,18 +43,16 @@ class SentenceModel {
   static SentenceModel fromJson(Map<String, Object?> json) => SentenceModel(
       id: json[SentenceFields.id] as int?,
       word: json[SentenceFields.word] as String,
-      isDownloaded: json[SentenceFields.isDownloaded] as bool,
-      voiceFile: json[SentenceFields.voiceFile] as String,
+      isDeletable: json[SentenceFields.isDeletable] as int,
       frequency: json[SentenceFields.frequency] as int,
-      description: json[SentenceFields.description] as String
+      description: json[SentenceFields.description] as String?
       );
 
   Map<String, Object?> toJson() =>
       {
         SentenceFields.id: id, 
         SentenceFields.word: word,
-        SentenceFields.isDownloaded: isDownloaded,
-        SentenceFields.voiceFile: voiceFile,
+        SentenceFields.isDeletable: isDeletable,
         SentenceFields.frequency: frequency,
         SentenceFields.description: description
         };
