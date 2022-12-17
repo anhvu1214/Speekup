@@ -9,15 +9,6 @@ import 'package:speekup_v2/screens/common/utils.dart';
 import '../common/bottom_sheet.dart';
 import 'components/body.dart';
 
-// final List<CategoryModel> listCategory = [
-//   CategoryModel(name: "Đã lưu", username: 'user1'),
-//   CategoryModel(name: "Quán ăn", username: 'user1'),
-//   CategoryModel(name: "Sinh hoạt ở nhà", username: 'user1'),
-//   CategoryModel(name: "Thủ tục văn bản hành chính", username: 'user1'),
-//   CategoryModel(name: "Văn hóa", username: 'user1'),
-//   CategoryModel(name: "Mua hàng", username: 'user1'),
-// ];
-
 class TextToSpeedScreen extends StatefulWidget {
   @override
   _TextToSpeedScreen createState() => _TextToSpeedScreen();
@@ -74,7 +65,9 @@ class _TextToSpeedScreen extends State<TextToSpeedScreen> {
                   if (isExist != null && !isExist) {
                     showModalBottomSheet(
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.only(topRight: Radius.circular(16), topLeft: Radius.circular(16)),
+                          borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(16),
+                              topLeft: Radius.circular(16)),
                         ),
                         context: context,
                         builder: (context) {
@@ -127,6 +120,7 @@ class _TextToSpeedScreen extends State<TextToSpeedScreen> {
     return FloatingActionButton(
         onPressed: () {
           showDialog(
+              barrierDismissible: false,
               context: context,
               builder: (context) => Center(
                       child: TextFieldDialog(
@@ -159,7 +153,7 @@ class _TextToSpeedScreen extends State<TextToSpeedScreen> {
       leadingWidth: 90,
       centerTitle: true,
       title: Text(
-        "Phát văn bản",
+        "Chuyển đổi văn bản - giọng nói",
         style: TextStyle(
             color: Colors.black, fontWeight: FontWeight.w700, fontSize: 16),
       ),

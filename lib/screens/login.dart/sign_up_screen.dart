@@ -17,26 +17,15 @@ import '../common/text_form_field.dart';
 import '../home/home_screen.dart';
 import 'components/body.dart';
 
-List<String> suco = [
-  'Đây là câu 1 để test thuộc Sự cố - Thoát hiểm: Trái với quan điểm chung của số đông, Lorem Ipsum không phải chỉ là một đoạn văn bản ngẫu nhiên.',
-  'Đây là câu 2 để test thuộc Sự cố - Thoát hiểm: Có rất nhiều biến thể của Lorem Ipsum mà bạn có thể tìm thấy, nhưng đa số được biến đổi bằng cách thêm các yếu tố hài hước, các từ ngẫu nhiên có khi không có vẻ gì là có ý nghĩa.',
-  'Đây là câu 3 để test thuộc Sự cố - Thoát hiểm: Vivamus in feugiat ligula, vitae convallis enim.',
-];
+List<String> suco = ['Cứu tôi với', 'Có cháy', 'Cướp'];
 
 List<String> bv = [
-  'Đây là câu 1 để test thuộc Bệnh viện',
-  'Đây là câu 2 để test thuộc Bệnh viện',
-  'Đây là câu 3 để test thuộc Bệnh viện',
-  'Đây là câu 4 để test thuộc Bệnh viện',
-  'Đây là câu 5 để test thuộc Bệnh viện',
-  'Đây là câu 6 để test thuộc Bệnh viện'
+  'Chỗ mua thuốc ở đâu',
+  'Còn bao lâu thì đến lượt tôi khám',
+  'Tôi có dùng thẻ bảo hiểm này được không'
 ];
 
-List<String> cs = [
-  'Đây là câu 1 thuộc Cảnh sát',
-  'Đây là câu 2 thuộc Cảnh sát',
-  'Đây là câu 3 thuộc Cảnh sát'
-];
+List<String> cs = ['Cửa hàng này buôn bán thực phẩm kém chất lượng'];
 
 class SignUpScreen extends StatefulWidget {
   @override
@@ -92,16 +81,6 @@ class _SignUpScreen extends State<SignUpScreen> {
             // alertDialog(context, "Error: Data Save Fail");
             showToast("Đã có lỗi xảy ra!");
           }
-
-          //   .then((userData) {
-          //     // alertDialog(context, "Successfully Saved");
-          //   Navigator.push(
-          //       context, MaterialPageRoute(builder: (context) => SplashScreen()));
-          // }).catchError((error) {
-          //     print(error);
-          //     // alertDialog(context, "Error: Data Save Fail");
-          //   }
-          //   );
         }
       } else {
         //Alert username is already exist
@@ -143,13 +122,16 @@ class _SignUpScreen extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      // resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       body: Form(
           key: signup_form_key,
           child: Padding(
               padding: EdgeInsets.all(24),
-              child: Column(
+              child: SizedBox(
+                height: MediaQuery.of(context).size.height,
+                child: SingleChildScrollView(
+                  child: Column(
                 children: [
                   // Text "Speekup"
                   Padding(
@@ -249,7 +231,7 @@ class _SignUpScreen extends State<SignUpScreen> {
                     ],
                   )
                 ],
-              ))),
+              ))))),
     );
   }
 }

@@ -30,10 +30,6 @@ class _SentenceDetailScreen extends State<SentenceDetailScreen> {
     super.initState();
   }
 
-  void initTtsConfig() async {
-    await flutterTts.setLanguage("vi-VN");
-  }
-
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -49,10 +45,14 @@ class _SentenceDetailScreen extends State<SentenceDetailScreen> {
               padding: EdgeInsets.only(left: 25),
               icon: Icon(Icons.arrow_back_ios_new_rounded,
                   color: primaryColor, size: 15)),
-          title: Text(
-            widget.title,
+          title: TextButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            style: TextButton.styleFrom(padding: EdgeInsets.zero),
+            child: Text(widget.title,
             style: TextStyle(
-                color: primaryColor, fontSize: 14, fontWeight: w400Font),
+                color: primaryColor, fontSize: 14, fontWeight: w400Font)),
           ),
         ),
         resizeToAvoidBottomInset: false,
@@ -84,6 +84,7 @@ class _SentenceDetailScreen extends State<SentenceDetailScreen> {
                                 icon: Icon(Icons.delete_outlined),
                                 onPressed: () {
                                   showDialog(
+                                      barrierDismissible: false,
                                       context: context,
                                       builder: (context) => Center(
                                               child: ConfirmDialog(
@@ -102,6 +103,7 @@ class _SentenceDetailScreen extends State<SentenceDetailScreen> {
                                 icon: Icon(Icons.mode_edit_outline_outlined),
                                 onPressed: () {
                                   showDialog(
+                                      barrierDismissible: false,
                                       context: context,
                                       builder: (context) => Center(
                                             child: TextFieldDialog(
@@ -126,7 +128,9 @@ class _SentenceDetailScreen extends State<SentenceDetailScreen> {
                         onPressed: () {
                           showModalBottomSheet(
                               shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.only(topRight: Radius.circular(16), topLeft: Radius.circular(16)),
+                                borderRadius: BorderRadius.only(
+                                    topRight: Radius.circular(16),
+                                    topLeft: Radius.circular(16)),
                               ),
                               context: context,
                               builder: (context) {
@@ -157,6 +161,7 @@ class _SentenceDetailScreen extends State<SentenceDetailScreen> {
                   IconButton(
                       onPressed: () {
                         showDialog(
+                            barrierDismissible: false,
                             context: context,
                             builder: (context) => Center(
                                   child: TextFieldDialog(
