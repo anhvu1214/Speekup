@@ -130,6 +130,7 @@ class _HomeScreen extends State<HomeScreen> {
                                 onPressed: () {
                                   Navigator.of(context).pop();
                                   showDialog(
+                                          barrierDismissible: false,
                                           context: context,
                                           builder: (context) => Center(
                                               child: editDialogContent(
@@ -199,6 +200,7 @@ class _HomeScreen extends State<HomeScreen> {
               icon: const Icon(Icons.help_outline, color: primaryColor),
               onPressed: () {
                 showDialog(
+                    barrierDismissible: false,
                     context: context,
                     builder: (context) => Center(
                         child: Dialog(

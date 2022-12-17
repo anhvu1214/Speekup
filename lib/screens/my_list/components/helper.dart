@@ -86,6 +86,7 @@ Widget buildPopMenu(
                 const Duration(seconds: 0),
                 (() => {
                       showDialog(
+                          barrierDismissible: false,
                           context: context,
                           builder: (context) => Center(
                                 child: isCategory
@@ -117,6 +118,7 @@ Widget buildPopMenu(
                 const Duration(seconds: 0),
                 () => {
                       showDialog(
+                          barrierDismissible: false,
                           context: context,
                           builder: (context) => Center(
                               child: isCategory

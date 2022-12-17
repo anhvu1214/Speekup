@@ -93,6 +93,12 @@ class _CategoryBottomSheet extends State<CategoryBottomSheet> {
           await sentenceTable?.removeFromCategory(sentence, element.id as int);
         }
       });
+      if (tempSelectedItems.length == 0) {
+        final SharedPreferences sp = await _prefs;
+        CategoryModel temp = await CategoryTable()
+            .getCategory(sp.getString('username')!, 'Đã lưu');
+        await sentenceTable?.addToCategory(sentence, temp.id as int);
+      }
       showToast("Lưu thành công.");
     } catch (e) {
       showToast("Lưu không thành công");
@@ -101,13 +107,6 @@ class _CategoryBottomSheet extends State<CategoryBottomSheet> {
 
     setState(() {});
   }
-
-  //   addNewCategory(String newValue) async {
-  //   SharedPreferences sp = await _prefs;
-  //   CategoryModel cat = await CategoryTable().create(CategoryModel(name: newValue, username: sp.getString('username')!));
-
-  //   setState((){});
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -160,12 +159,9 @@ class _CategoryBottomSheet extends State<CategoryBottomSheet> {
                   child: InkWell(
                     onTap: () {
                       showDialog(
+                          barrierDismissible: false,
                           context: context,
                           builder: (context) => Center(
-                                //     child: CategoryDialog(
-                                //   list: list,
-                                //   selectedItems: tempSelectedItems,
-                                // )
                                 child: TextFieldDialog(
                                   id: 0,
                                   title: "Tạo bộ câu mới",
@@ -225,8 +221,10 @@ class _CategoryBottomSheet extends State<CategoryBottomSheet> {
                                 key: UniqueKey(),
                                 onTap: () {
                                   tempSelectedItems.contains(list[index].name)
-                                      ? (tempSelectedItems.length == 1 ? tempSelectedItems : tempSelectedItems
-                                          .remove(list[index].name))
+                                      ? (tempSelectedItems.length == 1
+                                          ? tempSelectedItems
+                                          : tempSelectedItems
+                                              .remove(list[index].name))
                                       : tempSelectedItems.add(list[index].name);
                                   setState(() {});
                                   // tempSelectedItems.contains(list[index].name);

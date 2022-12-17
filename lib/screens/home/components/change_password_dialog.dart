@@ -12,6 +12,7 @@ TextEditingController newPwd = TextEditingController();
 TextEditingController cnewPwd = TextEditingController();
 void showChangePwdDialog(BuildContext context, UserModel user) {
   showDialog(
+      barrierDismissible: false,
       context: context,
       builder: (context) => Center(
             child: Dialog(
@@ -23,13 +24,13 @@ void showChangePwdDialog(BuildContext context, UserModel user) {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Padding(
-                      padding:
-                          EdgeInsets.symmetric(vertical: 16),
+                      padding: EdgeInsets.symmetric(vertical: 16),
                       child: Text("Đổi mật khẩu",
                           style:
                               TextStyle(fontWeight: w600Font, fontSize: 16))),
                   Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 16, vertical: 10),
                       child: Wrap(
                         spacing: 15,
                         children: <Widget>[
@@ -71,14 +72,14 @@ void showChangePwdDialog(BuildContext context, UserModel user) {
                           TextButton(
                               onPressed: () async {
                                 if (user.password == oldPwd.text) {
-
-                                  if(newPwd.text == cnewPwd.text) {
+                                  if (newPwd.text == cnewPwd.text) {
                                     user.password = newPwd.text;
                                     await UserTable().update(user);
                                     Navigator.pop(context);
                                   } else {
                                     //Alert
-                                    showToast("Mật khẩu nhập lại không chính xác.");
+                                    showToast(
+                                        "Mật khẩu nhập lại không chính xác.");
                                   }
                                 } else {
                                   //Alert

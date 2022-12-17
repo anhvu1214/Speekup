@@ -93,11 +93,11 @@ class _MyListScreen extends State<MyListScreen> {
                   list: listSentences,
                   category: item))).then((value) async {
         //update list after list sentence screen pop
-          setState(() => isLoading = true);
-          final SharedPreferences sp = await _prefs;
-          widget.list = await CategoryTable()
-              .getAllCategoriesByUser(sp.getString('username') as String);
-          setState(() => isLoading = false);
+        setState(() => isLoading = true);
+        final SharedPreferences sp = await _prefs;
+        widget.list = await CategoryTable()
+            .getAllCategoriesByUser(sp.getString('username') as String);
+        setState(() => isLoading = false);
       });
     } else {
       Navigator.push(
@@ -125,6 +125,7 @@ class _MyListScreen extends State<MyListScreen> {
                       onPressed: () {
                         //Remove selected items
                         showDialog(
+                            barrierDismissible: false,
                             context: context,
                             builder: (context) => Center(
                                   child: isCategory
@@ -197,6 +198,10 @@ class _MyListScreen extends State<MyListScreen> {
                                   )),
                               GestureDetector(
                                 onTap: () {
+                                  selectedItems.clear();
+                                  selectedItems.addAll(widget.list);
+                                  if (isCategory) {selectedItems.removeWhere((element) => element.name == 'Đã lưu');} 
+                                  print(selectedItems[0].name);
                                   setState(() => isSelectAll = !isSelectAll);
                                 },
                                 child: isSelectAll
@@ -226,6 +231,7 @@ class _MyListScreen extends State<MyListScreen> {
                                         const Duration(seconds: 0),
                                         () => {
                                               showDialog(
+                                                  barrierDismissible: false,
                                                   context: context,
                                                   builder: (context) => Center(
                                                       //Test: Lần đầu chạy list có tự cập nhật không?
@@ -343,19 +349,26 @@ class _MyListScreen extends State<MyListScreen> {
                                     SizedBox(
                                       width: 10,
                                     ),
-                                    widget.isDeletable ? isCategory
-                                        ? (widget.list[index].isDeletable == 1
-                                            ? (switchMode(
+                                    widget.isDeletable
+                                        ? isCategory
+                                            ? (widget.list[index].isDeletable ==
+                                                    1
+                                                ? (switchMode(
+                                                    widget.list
+                                                        .cast<CategoryModel>(),
+                                                    widget.list[index]))
+                                                : (SizedBox(
+                                                    height: 25,
+                                                  )))
+                                            : (switchMode(
                                                 widget.list
-                                                    .cast<CategoryModel>(),
+                                                    .cast<SentenceModel>(),
                                                 widget.list[index]))
-                                            : (SizedBox(
-                                                height: 25,
-                                              )))
-                                        : (switchMode(
-                                            widget.list.cast<SentenceModel>(),
-                                            widget.list[index])) 
-                                            : Icon(Icons.arrow_forward_ios_rounded, color: op40BlackColor, size: 15,)
+                                        : Icon(
+                                            Icons.arrow_forward_ios_rounded,
+                                            color: op40BlackColor,
+                                            size: 15,
+                                          )
                                   ],
                                 ),
                               )),
