@@ -1,24 +1,6 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-# speekup_v2
+# speekup
 
 A new Flutter project.
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-=======
-# Speekup
->>>>>>> 13e65ec9f7c31eed6ad02550575d4bf1c822d7af
-=======
-# Speekup
->>>>>>> 13e65ec9f7c31eed6ad02550575d4bf1c822d7af
+## Build pj
+```flutter build apk --build-name=1.0 --build-number=```
