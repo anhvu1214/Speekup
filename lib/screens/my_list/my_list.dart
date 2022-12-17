@@ -201,7 +201,6 @@ class _MyListScreen extends State<MyListScreen> {
                                   selectedItems.clear();
                                   selectedItems.addAll(widget.list);
                                   if (isCategory) {selectedItems.removeWhere((element) => element.name == 'Đã lưu');} 
-                                  print(selectedItems[0].name);
                                   setState(() => isSelectAll = !isSelectAll);
                                 },
                                 child: isSelectAll

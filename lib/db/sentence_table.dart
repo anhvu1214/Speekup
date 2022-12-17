@@ -48,6 +48,17 @@ class SentenceTable {
     }
   }
 
+  // Future<void> isInCategory(
+  //     SentenceModel sentence, int categoryID) async {
+  //   final db = await dbHelper.database;
+
+  //   final map = await db?.rawDelete();
+
+  //   if (map!.isEmpty) {
+  //     await delete(sentence.id as int);
+  //   }
+  // }
+
   Future<bool> isExist(String word) async {
     final db = await dbHelper.database;
     final result = await db?.query(tableName,
