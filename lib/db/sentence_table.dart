@@ -48,16 +48,12 @@ class SentenceTable {
     }
   }
 
-  // Future<void> isInCategory(
-  //     SentenceModel sentence, int categoryID) async {
-  //   final db = await dbHelper.database;
+  Future<int> removeRemainSentences() async {
+    final db = await dbHelper.database;
 
-  //   final map = await db?.rawDelete();
-
-  //   if (map!.isEmpty) {
-  //     await delete(sentence.id as int);
-  //   }
-  // }
+    return await db!.rawDelete(
+        'DELETE FROM sentences WHERE sentences.id NOT IN (SELECT sentence_category.sentenceID FROM sentence_category)');
+  }
 
   Future<bool> isExist(String word) async {
     final db = await dbHelper.database;
@@ -65,8 +61,6 @@ class SentenceTable {
         columns: SentenceFields.values,
         where: '${SentenceFields.word} = ?',
         whereArgs: [word]);
-    // var res = await db?.rawQuery("SELECT * FROM $tableName WHERE "
-    //     "${SentenceFields.word} = '$word'");
     if (result!.isNotEmpty) {
       return true;
     } else {
@@ -80,8 +74,6 @@ class SentenceTable {
         columns: SentenceFields.values,
         where: '${SentenceFields.word} = ?',
         whereArgs: [word]);
-    // var res = await db?.rawQuery("SELECT * FROM $tableName WHERE "
-    //     "${SentenceFields.word} = '$word'");
     if (result!.isNotEmpty) {
       return SentenceModel.fromJson(result.first);
     } else {

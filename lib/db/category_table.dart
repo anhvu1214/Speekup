@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:path/path.dart';
 import 'package:speekup_v2/db/database_helper.dart';
+import 'package:speekup_v2/db/sentence_table.dart';
 import 'package:speekup_v2/model/category.dart';
 import 'package:speekup_v2/model/user.dart';
 import 'package:sqflite/sqflite.dart';
@@ -95,7 +96,7 @@ class CategoryTable {
     try {
       await db!.delete(tableSentenceCategory,
           where: 'categoryID = ?', whereArgs: [id]);
-
+      await SentenceTable().removeRemainSentences();
       await db.delete(tableName,
           where: '${CategoryFields.id} = ?', whereArgs: [id]);
       return true;
