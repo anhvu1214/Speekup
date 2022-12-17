@@ -108,7 +108,14 @@ class _SearchBarState extends State<SearchBar> {
                 FocusNode focusNode,
                 VoidCallback onFieldSubmitted,
               ) {
-                return TextFormField(
+                return Focus(
+                  onFocusChange: (value) {
+                    setState(() {
+                      getAllCategories();
+                      getAllSentences();
+                    });
+                  },
+                  child: TextFormField(
                   controller: textEditingController,
                   focusNode: focusNode,
                   onFieldSubmitted: (String value) {
@@ -132,7 +139,7 @@ class _SearchBarState extends State<SearchBar> {
                       focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8.0),
                           borderSide: BorderSide(color: primaryColor))),
-                );
+                ));
               },
               optionsViewBuilder: (context, onSelected, options) {
                 List<String> categories = [];

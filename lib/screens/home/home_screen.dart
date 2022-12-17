@@ -148,6 +148,7 @@ class _HomeScreen extends State<HomeScreen> {
                                 child: OutlinedButton(
                                     onPressed: () async {
                                       setLogoutState();
+                                      FocusScope.of(context).unfocus();
                                       Navigator.push(
                                           context,
                                           MaterialPageRoute(
@@ -317,10 +318,6 @@ class _HomeScreen extends State<HomeScreen> {
                       EmergencyScreen()),
                 ],
               ))),
-      //Sign out button
-      // Padding(
-      //     padding: EdgeInsets.symmetric(horizontal: 24),
-      //     child: )
     ]);
   }
 
@@ -329,6 +326,7 @@ class _HomeScreen extends State<HomeScreen> {
       BuildContext context, Icon icon, String text, StatefulWidget nextScreen) {
     return InkWell(
         onTap: () {
+          FocusScope.of(context).unfocus();
           Navigator.push(
                   context, MaterialPageRoute(builder: (context) => nextScreen))
               .then((value) async {
