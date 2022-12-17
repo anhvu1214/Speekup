@@ -1,4 +1,4 @@
-# speekup
+# SPEEKUP
 
 SPEEKUP là ứng dụng di động có khả năng hỗ trợ người câm điếc trong giao tiếp thường nhật.
 
