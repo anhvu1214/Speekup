@@ -12,7 +12,7 @@ Về cơ bản, nền tảng ứng dụng của SPEEKUP là cung cấp tính nă
 
 ## Cài đặt
 1. ```flutter create -a kotlin --androidx --org com.yourdomainname .``` nếu chưa có folder android/ios.
-2. ```flutter packages get```
+2. ```flutter pub get```
 3. ```flutter run```
 
 ## Build project
